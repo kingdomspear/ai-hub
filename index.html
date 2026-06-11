@@ -441,6 +441,7 @@ const SERVICES = [
   {name:"Papago",icon:"🇰🇷",desc:"Naver의 한국어 특화 AI 번역 서비스. 한-영 번역 품질이 탁월하며 음성·이미지·웹페이지 번역을 모두 지원.",url:"https://papago.naver.com",cat:"productivity",sub:"translation",theme:"t-green",tag:"번역 AI",isNew:false},
   {name:"Jasper",icon:"✍️",desc:"마케팅·콘텐츠 팀을 위한 AI 글쓰기 플랫폼. 브랜드 보이스 학습과 SEO 최적화 콘텐츠 대량 생성을 지원.",url:"https://www.jasper.ai",cat:"productivity",sub:"writing",theme:"t-orange",tag:"문서 AI",isNew:false},
   {name:"Otter.ai",icon:"🦦",desc:"AI 회의 기록 및 요약 서비스. 실시간 자막 생성부터 회의 내용 요약·액션 아이템 추출까지 자동화.",url:"https://otter.ai",cat:"productivity",sub:"research",theme:"t-yellow",tag:"회의 AI",isNew:false},
+  {name:"Jotform",icon:"📋",desc:"드래그 앤 드롭 AI 폼 빌더. 폼 생성부터 앱 제작·워크플로우 자동화·PDF 편집·전자 서명까지 3500만 사용자가 신뢰하는 올인원 플랫폼.",url:"https://www.jotform.com",cat:"productivity",sub:"workflow",theme:"t-orange",tag:"폼 빌더",isNew:false},
 ];
 
 const SIDEBAR_CONFIG = {
@@ -494,6 +495,7 @@ const SIDEBAR_CONFIG = {
         {key:"presentation",label:"프레젠테이션",dot:"#ff8ac0",sub:"presentation"},
         {key:"research",label:"리서치 도구",dot:"#7ecbff",sub:"research"},
         {key:"translation",label:"번역 AI",dot:"#41e08e",sub:"translation"},
+      {key:"workflow",label:"자동화 & 폼",dot:"#ff8c42",sub:"workflow"},
       ]}
     ]
   }
@@ -519,6 +521,7 @@ const PAGE_META = {
   presentation:{title:"프레젠테이션 AI",desc:"AI로 슬라이드와 발표 자료를 자동 생성"},
   research:{title:"리서치 도구",desc:"AI 기반 연구·분석·정보 탐색 도구"},
   translation:{title:"번역 AI",desc:"AI 기반 고품질 번역 서비스"},
+  workflow:{title:"자동화 & 폼",desc:"폼 빌더·워크플로우·업무 자동화 AI 도구 모음"},
 };
 
 let state = {cat:"all",sub:null,search:""};
