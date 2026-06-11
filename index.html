@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI HUB — AI 서비스 모음</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090910;
+  --bg2: #0f0f1a;
+  --bg3: #14142a;
+  --card: #16162a;
+  --card-h: #1c1c38;
+  --border: rgba(255,255,255,0.07);
+  --border-h: rgba(120,100,255,0.35);
+  --txt: #e2e2f0;
+  --txt2: #7878a0;
+  --txt3: #4e4e70;
+  --purple: #7c6fff;
+  --purple2: #a89bff;
+  --pink: #ff5fa0;
+  --cyan: #3de8c8;
+  --orange: #ff8c42;
+  --green: #41e08e;
+  --yellow: #f5c542;
+  --sidebar-w: 230px;
+  --header-h: 62px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);
+  color:var(--txt);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ──────────────── HEADER ──────────────── */
+header{
+  position:fixed;top:0;left:0;right:0;
+  height:var(--header-h);
+  background:rgba(9,9,16,0.88);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  z-index:200;
+  display:flex;align-items:center;
+  padding:0 20px 0 24px;
+  gap:0;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-size:18px;font-weight:800;
+  letter-spacing:-0.03em;
+  margin-right:36px;
+  flex-shrink:0;
+  text-decoration:none;
+}
+.logo-icon{
+  width:32px;height:32px;border-radius:9px;
+  background:linear-gradient(135deg,#7c6fff 0%,#ff5fa0 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+}
+.logo-text{
+  background:linear-gradient(135deg,#a89bff,#ff7eb8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* top nav tabs */
+.top-nav{
+  display:flex;gap:2px;
+  flex:1;
+  overflow-x:auto;
+}
+.top-nav::-webkit-scrollbar{display:none;}
+.tnav{
+  padding:7px 18px;border-radius:8px;
+  cursor:pointer;font-size:13.5px;font-weight:500;
+  color:var(--txt2);
+  transition:all .18s;
+  white-space:nowrap;border:none;background:transparent;
+  letter-spacing:-0.01em;
+}
+.tnav:hover{color:var(--txt);background:rgba(255,255,255,0.05);}
+.tnav.active{
+  color:#fff;
+  background:linear-gradient(135deg,rgba(124,111,255,.22),rgba(255,95,160,.12));
+  border:1px solid rgba(124,111,255,.3);
+}
+
+/* search */
+.search-box{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  border-radius:9px;padding:7px 14px;
+  margin-left:12px;flex-shrink:0;
+}
+.search-box input{
+  background:transparent;border:none;outline:none;
+  color:var(--txt);font-size:13px;width:160px;
+}
+.search-box input::placeholder{color:var(--txt3);}
+.search-icon{color:var(--txt3);font-size:14px;}
+
+/* ──────────────── LAYOUT ──────────────── */
+.layout{
+  display:flex;
+  padding-top:var(--header-h);
+  min-height:100vh;
+}
+
+/* ──────────────── SIDEBAR ──────────────── */
+aside{
+  width:var(--sidebar-w);
+  position:fixed;top:var(--header-h);left:0;bottom:0;
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  padding:20px 10px 32px;
+  overflow-y:auto;
+  z-index:100;
+}
+aside::-webkit-scrollbar{width:3px;}
+aside::-webkit-scrollbar-track{background:transparent;}
+aside::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px;}
+
+.side-label{
+  font-size:10.5px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.09em;
+  color:var(--txt3);padding:10px 12px 6px;
+  margin-top:8px;
+}
+.side-label:first-child{margin-top:0;}
+
+.sitem{
+  display:flex;align-items:center;gap:9px;
+  padding:8px 12px;border-radius:8px;
+  cursor:pointer;font-size:13px;font-weight:500;
+  color:var(--txt2);transition:all .16s;
+  border:none;background:transparent;width:100%;text-align:left;
+}
+.sitem:hover{background:rgba(255,255,255,.05);color:var(--txt);}
+.sitem.active{
+  background:rgba(124,111,255,.13);
+  color:var(--purple2);
+}
+.sitem .dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+}
+.sitem .cnt{
+  margin-left:auto;font-size:11px;font-weight:600;
+  background:rgba(255,255,255,.06);
+  color:var(--txt3);
+  padding:2px 7px;border-radius:10px;
+}
+.sitem.active .cnt{
+  background:rgba(124,111,255,.18);color:var(--purple2);
+}
+
+.side-divider{height:1px;background:var(--border);margin:12px 10px;}
+
+/* ──────────────── MAIN ──────────────── */
+main{
+  flex:1;
+  margin-left:var(--sidebar-w);
+  padding:32px 32px 60px;
+  min-width:0;
+}
+
+.page-head{
+  margin-bottom:28px;
+}
+.page-title{
+  font-size:22px;font-weight:700;letter-spacing:-.03em;
+  margin-bottom:5px;
+}
+.page-sub{font-size:13px;color:var(--txt2);}
+.page-count{
+  display:inline-flex;align-items:center;
+  gap:5px;margin-top:10px;
+  font-size:12px;color:var(--txt2);
+}
+.page-count span{
+  background:rgba(124,111,255,.15);
+  color:var(--purple2);padding:2px 9px;border-radius:10px;
+  font-weight:600;
+}
+
+/* ──────────────── CARDS ──────────────── */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;padding:22px;
+  cursor:pointer;
+  transition:transform .22s cubic-bezier(.23,1,.32,1),
+             box-shadow .22s,border-color .22s,background .18s;
+  position:relative;overflow:hidden;
+  text-decoration:none;display:flex;flex-direction:column;
+  color:inherit;
+}
+.card::after{
+  content:'';position:absolute;
+  inset:0;border-radius:16px;
+  background:var(--card-glow,radial-gradient(circle at 70% 0%,rgba(124,111,255,.08),transparent 60%));
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.card:hover{
+  background:var(--card-h);
+  border-color:var(--border-h);
+  transform:translateY(-4px);
+  box-shadow:0 16px 48px rgba(0,0,0,.55),0 0 0 1px rgba(124,111,255,.15);
+}
+.card:hover::after{opacity:1;}
+
+/* top accent line */
+.card-top-line{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  border-radius:16px 16px 0 0;
+  background:var(--line-grad,linear-gradient(90deg,#7c6fff,#ff5fa0));
+  opacity:0;transition:opacity .25s;
+}
+.card:hover .card-top-line{opacity:1;}
+
+.card-icon{
+  width:46px;height:46px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:15px;flex-shrink:0;
+  position:relative;z-index:1;
+  background:var(--icon-bg,rgba(124,111,255,.12));
+  border:1px solid rgba(255,255,255,.06);
+}
+.card-name{
+  font-size:15.5px;font-weight:700;margin-bottom:5px;
+  letter-spacing:-.02em;position:relative;z-index:1;
+}
+.card-desc{
+  font-size:12.5px;color:var(--txt2);line-height:1.65;
+  flex:1;position:relative;z-index:1;margin-bottom:18px;
+}
+.card-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:1;
+}
+.card-tag{
+  font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:20px;
+  background:var(--tag-bg,rgba(124,111,255,.12));
+  color:var(--tag-c,var(--purple2));
+  letter-spacing:.01em;
+}
+.card-arrow{
+  font-size:15px;color:var(--txt3);
+  transition:transform .2s,color .2s;
+}
+.card:hover .card-arrow{transform:translateX(5px);color:var(--txt);}
+
+/* new badge */
+.card-new{
+  position:absolute;top:14px;right:14px;
+  font-size:9.5px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;
+  background:linear-gradient(135deg,#7c6fff,#ff5fa0);
+  color:#fff;padding:2px 8px;border-radius:20px;
+}
+
+/* empty state */
+.empty{
+  grid-column:1/-1;
+  padding:80px 20px;text-align:center;
+  color:var(--txt2);
+}
+.empty-icon{font-size:48px;margin-bottom:16px;opacity:.4;}
+.empty-text{font-size:15px;}
+
+/* ──────────────── COLOR THEMES ──────────────── */
+.t-purple{--card-glow:radial-gradient(circle at 70% 0%,rgba(124,111,255,.1),transparent 60%);
+  --line-grad:linear-gradient(90deg,#7c6fff,#a89bff);
+  --icon-bg:rgba(124,111,255,.14);
+  --tag-bg:rgba(124,111,255,.12);--tag-c:#a89bff;}
+.t-pink{--card-glow:radial-gradient(circle at 70% 0%,rgba(255,95,160,.08),transparent 60%);
+  --line-grad:linear-gradient(90deg,#ff5fa0,#ffb3d4);
+  --icon-bg:rgba(255,95,160,.12);
+  --tag-bg:rgba(255,95,160,.1);--tag-c:#ff8ac0;}
+.t-cyan{--card-glow:radial-gradient(circle at 70% 0%,rgba(61,232,200,.07),transparent 60%);
+  --line-grad:linear-gradient(90deg,#3de8c8,#00bfff);
+  --icon-bg:rgba(61,232,200,.1);
+  --tag-bg:rgba(61,232,200,.1);--tag-c:#3de8c8;}
+.t-orange{--card-glow:radial-gradient(circle at 70% 0%,rgba(255,140,66,.08),transparent 60%);
+  --line-grad:linear-gradient(90deg,#ff8c42,#ffbf6a);
+  --icon-bg:rgba(255,140,66,.12);
+  --tag-bg:rgba(255,140,66,.1);--tag-c:#ffaa6a;}
+.t-green{--card-glow:radial-gradient(circle at 70% 0%,rgba(65,224,142,.07),transparent 60%);
+  --line-grad:linear-gradient(90deg,#41e08e,#a8f5d0);
+  --icon-bg:rgba(65,224,142,.1);
+  --tag-bg:rgba(65,224,142,.1);--tag-c:#41e08e;}
+.t-yellow{--card-glow:radial-gradient(circle at 70% 0%,rgba(245,197,66,.07),transparent 60%);
+  --line-grad:linear-gradient(90deg,#f5c542,#ffe48a);
+  --icon-bg:rgba(245,197,66,.1);
+  --tag-bg:rgba(245,197,66,.1);--tag-c:#f5c542;}
+.t-blue{--card-glow:radial-gradient(circle at 70% 0%,rgba(66,153,255,.08),transparent 60%);
+  --line-grad:linear-gradient(90deg,#4299ff,#7ecbff);
+  --icon-bg:rgba(66,153,255,.12);
+  --tag-bg:rgba(66,153,255,.1);--tag-c:#7ecbff;}
+
+/* ──────────────── RESPONSIVE ──────────────── */
+@media(max-width:900px){
+  aside{transform:translateX(-100%);transition:transform .25s;}
+  aside.open{transform:translateX(0);}
+  main{margin-left:0;}
+  .menu-btn{display:flex!important;}
+}
+@media(max-width:600px){
+  .cards{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:460px){
+  .cards{grid-template-columns:1fr;}
+}
+.menu-btn{
+  display:none;
+  align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:none;cursor:pointer;
+  color:var(--txt);font-size:18px;flex-shrink:0;margin-right:8px;
+}
+.overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:99;backdrop-filter:blur(2px);
+}
+.overlay.show{display:block;}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <button class="menu-btn" id="menuBtn">☰</button>
+  <a href="#" class="logo">
+    <div class="logo-icon">✦</div>
+    <span class="logo-text">AI HUB</span>
+  </a>
+  <nav class="top-nav" id="topNav">
+    <button class="tnav active" data-cat="all">전체</button>
+    <button class="tnav" data-cat="assistant">AI 어시스턴트</button>
+    <button class="tnav" data-cat="creative">크리에이티브 AI</button>
+    <button class="tnav" data-cat="dev">개발 &amp; 플랫폼</button>
+  </nav>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="서비스 검색...">
+  </div>
+</header>
+
+<!-- ── OVERLAY ── -->
+<div class="overlay" id="overlay"></div>
+
+<!-- ── LAYOUT ── -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div id="sideContent"></div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="page-head">
+      <div class="page-title" id="pageTitle">전체 AI 서비스</div>
+      <div class="page-sub" id="pageSub">엄선된 AI 도구와 플랫폼을 한곳에서 탐색하세요.</div>
+      <div class="page-count">총 <span id="cardCount">0</span>개의 서비스</div>
+    </div>
+    <div class="cards" id="cardGrid"></div>
+  </main>
+
+</div>
+
+<script>
+const SERVICES = [
+  {name:"Claude",icon:"🧠",desc:"Anthropic의 안전하고 강력한 AI 어시스턴트. 긴 문맥 이해와 정교한 분석에 탁월.",url:"https://claude.ai",cat:"assistant",sub:"text",theme:"t-purple",tag:"텍스트 AI",isNew:false},
+  {name:"ChatGPT",icon:"💬",desc:"OpenAI의 대화형 AI. GPT-4o 기반으로 텍스트·이미지·음성을 모두 처리.",url:"https://chatgpt.com",cat:"assistant",sub:"text",theme:"t-green",tag:"텍스트 AI",isNew:false},
+  {name:"Grok",icon:"⚡",desc:"xAI가 만든 실시간 정보 접근 AI. X(트위터) 데이터를 기반으로 최신 정보 제공.",url:"https://x.com/i/grok",cat:"assistant",sub:"text",theme:"t-cyan",tag:"텍스트 AI",isNew:false},
+  {name:"Le Chat",icon:"🐱",desc:"Mistral AI의 오픈소스 기반 대화형 AI 어시스턴트. 빠른 응답과 높은 성능.",url:"https://chat.mistral.ai",cat:"assistant",sub:"text",theme:"t-orange",tag:"텍스트 AI",isNew:false},
+  {name:"Gemini",icon:"♊",desc:"Google DeepMind의 멀티모달 AI. 텍스트·이미지·코드·음성을 통합 처리.",url:"https://gemini.google.com",cat:"assistant",sub:"multimodal",theme:"t-blue",tag:"멀티모달",isNew:false},
+  {name:"Copilot",icon:"🪟",desc:"Microsoft의 AI 어시스턴트. GPT-4 + Bing 검색 통합으로 최신 정보 포함.",url:"https://copilot.microsoft.com",cat:"assistant",sub:"multimodal",theme:"t-blue",tag:"멀티모달",isNew:false},
+  {name:"Genspark",icon:"✨",desc:"AI 기반 차세대 검색 엔진. 복잡한 질문에 대한 심층적인 답변을 생성.",url:"https://www.genspark.ai",cat:"assistant",sub:"search",theme:"t-purple",tag:"검색 AI",isNew:true},
+  {name:"Perplexity",icon:"🔭",desc:"실시간 검색 통합 AI. 출처를 명시하며 신뢰할 수 있는 답변을 제공.",url:"https://www.perplexity.ai",cat:"assistant",sub:"search",theme:"t-cyan",tag:"검색 AI",isNew:false},
+  {name:"You.com",icon:"🌐",desc:"개인화된 AI 검색 엔진. 다양한 AI 모델을 선택해 검색 경험을 커스터마이징.",url:"https://you.com",cat:"assistant",sub:"search",theme:"t-green",tag:"검색 AI",isNew:false},
+  {name:"Whisk",icon:"🎨",desc:"Google의 이미지 리믹스 AI. 이미지를 드래그 앤 드롭으로 결합해 새로운 이미지 생성.",url:"https://labs.google/fx/tools/whisk",cat:"creative",sub:"image",theme:"t-pink",tag:"이미지 생성",isNew:true},
+  {name:"Midjourney",icon:"🖼️",desc:"세계 최고 수준의 이미지 생성 AI. 예술적이고 고품질의 이미지를 생성.",url:"https://www.midjourney.com",cat:"creative",sub:"image",theme:"t-pink",tag:"이미지 생성",isNew:false},
+  {name:"Adobe Firefly",icon:"🔥",desc:"Adobe의 생성형 AI. Photoshop·Illustrator와 완벽 통합된 상업적 안전 이미지 생성.",url:"https://firefly.adobe.com",cat:"creative",sub:"image",theme:"t-orange",tag:"이미지 생성",isNew:false},
+  {name:"Ideogram",icon:"💡",desc:"텍스트 렌더링에 강한 이미지 생성 AI. 포스터·로고·타이포그래피에 최적.",url:"https://ideogram.ai",cat:"creative",sub:"image",theme:"t-yellow",tag:"이미지 생성",isNew:false},
+  {name:"Stable Diffusion",icon:"🌊",desc:"오픈소스 기반 이미지 생성 AI. 완전한 커스터마이징과 로컬 실행 지원.",url:"https://stability.ai",cat:"creative",sub:"image",theme:"t-cyan",tag:"이미지 생성",isNew:false},
+  {name:"SUNO",icon:"🎵",desc:"텍스트 프롬프트로 완성도 높은 음악을 생성. 보컬·멜로디·가사까지 자동 제작.",url:"https://suno.com",cat:"creative",sub:"music",theme:"t-purple",tag:"음악 생성",isNew:false},
+  {name:"Udio",icon:"🎶",desc:"고품질 AI 음악 생성 플랫폼. 세밀한 장르·분위기 조절과 뛰어난 음질 제공.",url:"https://www.udio.com",cat:"creative",sub:"music",theme:"t-pink",tag:"음악 생성",isNew:false},
+  {name:"ElevenLabs",icon:"🎤",desc:"AI 음성 합성 및 클로닝. 100개 이상 언어 지원, 자연스러운 음성 생성.",url:"https://elevenlabs.io",cat:"creative",sub:"music",theme:"t-orange",tag:"음성 AI",isNew:false},
+  {name:"Runway",icon:"🎬",desc:"AI 비디오 생성·편집 플랫폼. Gen-3 모델로 놀라운 품질의 영상을 제작.",url:"https://runwayml.com",cat:"creative",sub:"video",theme:"t-cyan",tag:"비디오 AI",isNew:false},
+  {name:"Pika",icon:"⚡",desc:"텍스트·이미지로 고품질 비디오 생성. 직관적인 편집 기능으로 빠른 제작.",url:"https://pika.art",cat:"creative",sub:"video",theme:"t-pink",tag:"비디오 AI",isNew:false},
+  {name:"Kling AI",icon:"🎞️",desc:"Kuaishou의 고해상도 비디오 생성 AI. 사실적이고 물리적으로 정확한 영상.",url:"https://klingai.com",cat:"creative",sub:"video",theme:"t-purple",tag:"비디오 AI",isNew:true},
+  {name:"HeyGen",icon:"👤",desc:"AI 아바타 기반 영상 제작. 리얼리스틱한 AI 발표자로 전문적인 비디오 생성.",url:"https://www.heygen.com",cat:"creative",sub:"video",theme:"t-green",tag:"비디오 AI",isNew:false},
+  {name:"Lovable",icon:"💜",desc:"자연어로 풀스택 웹앱을 생성. React + Supabase 기반 앱을 대화로 빌드.",url:"https://lovable.dev",cat:"creative",sub:"codebuilder",theme:"t-pink",tag:"코드 빌더",isNew:true},
+  {name:"V0",icon:"▲",desc:"Vercel의 UI 생성 AI. 텍스트나 스케치로 shadcn/ui 기반 컴포넌트를 생성.",url:"https://v0.dev",cat:"creative",sub:"codebuilder",theme:"t-cyan",tag:"코드 빌더",isNew:false},
+  {name:"Bolt",icon:"⚡",desc:"StackBlitz의 AI 풀스택 앱 빌더. 브라우저에서 즉시 실행되는 앱 생성.",url:"https://bolt.new",cat:"creative",sub:"codebuilder",theme:"t-yellow",tag:"코드 빌더",isNew:true},
+  {name:"Hugging Face",icon:"🤗",desc:"AI 모델·데이터셋·Spaces 허브. 50만 개 이상의 모델과 커뮤니티 생태계.",url:"https://huggingface.co",cat:"dev",sub:"hub",theme:"t-yellow",tag:"모델 허브",isNew:false},
+  {name:"Replicate",icon:"♻️",desc:"API로 수천 개 AI 모델을 즉시 실행. 별도 인프라 없이 모델 배포 및 스케일링.",url:"https://replicate.com",cat:"dev",sub:"hub",theme:"t-green",tag:"모델 허브",isNew:false},
+  {name:"Ollama",icon:"🦙",desc:"로컬 LLM 실행 플랫폼. Llama·Mistral 등 오픈소스 모델을 PC에서 직접 구동.",url:"https://ollama.com",cat:"dev",sub:"hub",theme:"t-orange",tag:"로컬 AI",isNew:false},
+  {name:"Cursor",icon:"🖱️",desc:"AI 네이티브 코드 에디터. 코드베이스를 이해하고 대화로 코딩하는 차세대 IDE.",url:"https://www.cursor.com",cat:"dev",sub:"editor",theme:"t-purple",tag:"AI 에디터",isNew:false},
+  {name:"Windsurf",icon:"🏄",desc:"Codeium의 AI 코드 에디터. Cascade 에이전트로 복잡한 작업을 자율적으로 수행.",url:"https://windsurf.com",cat:"dev",sub:"editor",theme:"t-cyan",tag:"AI 에디터",isNew:true},
+  {name:"GitHub Copilot",icon:"🐙",desc:"GitHub의 AI 페어 프로그래머. IDE 안에서 코드 자동완성·설명·리뷰를 제공.",url:"https://github.com/features/copilot",cat:"dev",sub:"editor",theme:"t-green",tag:"AI 에디터",isNew:false},
+  {name:"GitHub",icon:"🐙",desc:"세계 최대 코드 저장소. AI Copilot·Actions·Codespaces로 개발 워크플로우 통합.",url:"https://github.com",cat:"dev",sub:"devtools",theme:"t-cyan",tag:"개발 도구",isNew:false},
+  {name:"Replit",icon:"🔴",desc:"브라우저 기반 클라우드 IDE. AI 에이전트로 앱을 빌드·테스트·배포까지 원스톱.",url:"https://replit.com",cat:"dev",sub:"devtools",theme:"t-orange",tag:"개발 도구",isNew:false},
+  {name:"OpenAI API",icon:"🔑",desc:"GPT-4o·DALL-E·Whisper API. 강력한 AI 기능을 앱에 손쉽게 통합.",url:"https://platform.openai.com",cat:"dev",sub:"devtools",theme:"t-green",tag:"API 플랫폼",isNew:false},
+  {name:"Anthropic API",icon:"🅐",desc:"Claude API. 안전하고 강력한 AI를 앱에 통합하기 위한 개발자 플랫폼.",url:"https://console.anthropic.com",cat:"dev",sub:"devtools",theme:"t-purple",tag:"API 플랫폼",isNew:false},
+];
+
+const SIDEBAR_CONFIG = {
+  all:{
+    label:"탐색",
+    items:[
+      {key:"all",label:"전체 보기",dot:"#7c6fff",sub:null},
+      {key:"assistant",label:"AI 어시스턴트",dot:"#a89bff",sub:null},
+      {key:"creative",label:"크리에이티브 AI",dot:"#ff5fa0",sub:null},
+      {key:"dev",label:"개발 & 플랫폼",dot:"#41e08e",sub:null},
+    ],
+    extra:[
+      {label:"인기 서비스",items:[
+        {key:"_new",label:"신규 서비스",dot:"#f5c542",sub:"new"},
+      ]}
+    ]
+  },
+  assistant:{
+    sections:[
+      {label:"카테고리",items:[
+        {key:"text",label:"텍스트 AI",dot:"#a89bff",sub:"text"},
+        {key:"multimodal",label:"멀티모달 AI",dot:"#7ecbff",sub:"multimodal"},
+        {key:"search",label:"검색 AI",dot:"#3de8c8",sub:"search"},
+      ]}
+    ]
+  },
+  creative:{
+    sections:[
+      {label:"카테고리",items:[
+        {key:"image",label:"이미지 생성",dot:"#ff8ac0",sub:"image"},
+        {key:"music",label:"음악 & 음성",dot:"#a89bff",sub:"music"},
+        {key:"video",label:"비디오 AI",dot:"#3de8c8",sub:"video"},
+        {key:"codebuilder",label:"코드 빌더",dot:"#f5c542",sub:"codebuilder"},
+      ]}
+    ]
+  },
+  dev:{
+    sections:[
+      {label:"카테고리",items:[
+        {key:"hub",label:"모델 허브",dot:"#ffaa6a",sub:"hub"},
+        {key:"editor",label:"AI 코드 에디터",dot:"#a89bff",sub:"editor"},
+        {key:"devtools",label:"개발 도구",dot:"#41e08e",sub:"devtools"},
+      ]}
+    ]
+  }
+};
+
+const PAGE_META = {
+  all:{title:"전체 AI 서비스",desc:"엄선된 AI 도구와 플랫폼을 한곳에서 탐색하세요."},
+  assistant:{title:"AI 어시스턴트",desc:"텍스트·검색·멀티모달 AI 어시스턴트 모음"},
+  creative:{title:"크리에이티브 AI",desc:"이미지·음악·비디오·코드 생성 AI 도구 모음"},
+  dev:{title:"개발 & 플랫폼",desc:"AI 개발을 위한 모델 허브·에디터·API 플랫폼 모음"},
+  text:{title:"텍스트 AI",desc:"대화와 텍스트 생성에 특화된 AI 어시스턴트"},
+  multimodal:{title:"멀티모달 AI",desc:"텍스트·이미지·음성을 통합 처리하는 AI"},
+  search:{title:"검색 AI",desc:"AI 기반 차세대 검색 엔진 및 정보 탐색 도구"},
+  image:{title:"이미지 생성 AI",desc:"텍스트나 이미지로 새로운 비주얼을 만들어내는 AI"},
+  music:{title:"음악 & 음성 AI",desc:"음악 작곡부터 음성 합성까지 오디오 생성 AI"},
+  video:{title:"비디오 AI",desc:"AI로 영상을 생성하고 편집하는 플랫폼"},
+  codebuilder:{title:"AI 코드 빌더",desc:"대화로 풀스택 앱을 만드는 AI 개발 도구"},
+  hub:{title:"모델 허브",desc:"AI 모델을 탐색·배포·실행하는 플랫폼"},
+  editor:{title:"AI 코드 에디터",desc:"AI가 내장된 차세대 개발 환경"},
+  devtools:{title:"개발 도구",desc:"AI 앱 개발을 위한 API·IDE·플랫폼"},
+};
+
+let state = {cat:"all",sub:null,search:""};
+
+function renderSidebar(){
+  const el = document.getElementById("sideContent");
+  const cat = state.cat;
+  let html = "";
+
+  if(cat==="all"){
+    const cfg = SIDEBAR_CONFIG.all;
+    html += `<div class="side-label">${cfg.label}</div>`;
+    cfg.items.forEach(i=>{
+      const cnt = i.key==="all" ? SERVICES.length : SERVICES.filter(s=>s.cat===i.key).length;
+      const active = (i.key==="all" && !state.sub) ? "active" : "";
+      html += `<button class="sitem ${active}" onclick="handleSide('all','${i.sub||""}','${i.label}')">
+        <span class="dot" style="background:${i.dot}"></span>
+        ${i.label}
+        <span class="cnt">${cnt}</span>
+      </button>`;
+    });
+    cfg.extra.forEach(sec=>{
+      html += `<div class="side-divider"></div><div class="side-label">${sec.label}</div>`;
+      sec.items.forEach(i=>{
+        const cnt = SERVICES.filter(s=>s.isNew).length;
+        const active = state.sub==="new" ? "active" : "";
+        html += `<button class="sitem ${active}" onclick="handleSide('all','new','신규 서비스')">
+          <span class="dot" style="background:${i.dot}"></span>
+          ${i.label}
+          <span class="cnt">${cnt}</span>
+        </button>`;
+      });
+    });
+  } else {
+    const cfg = SIDEBAR_CONFIG[cat];
+    html += `<button class="sitem" onclick="handleNav('all')" style="margin-bottom:8px;color:var(--txt3)">
+      ← 전체 보기
+    </button><div class="side-divider"></div>`;
+    cfg.sections.forEach(sec=>{
+      html += `<div class="side-label">${sec.label}</div>`;
+      const totalCnt = SERVICES.filter(s=>s.cat===cat).length;
+      const allActive = !state.sub ? "active" : "";
+      html += `<button class="sitem ${allActive}" onclick="handleSide('${cat}','','전체')">
+        <span class="dot" style="background:#ffffff30"></span>
+        전체
+        <span class="cnt">${totalCnt}</span>
+      </button>`;
+      sec.items.forEach(i=>{
+        const cnt = SERVICES.filter(s=>s.cat===cat && s.sub===i.sub).length;
+        const active = state.sub===i.sub ? "active" : "";
+        html += `<button class="sitem ${active}" onclick="handleSide('${cat}','${i.sub}','${i.label}')">
+          <span class="dot" style="background:${i.dot}"></span>
+          ${i.label}
+          <span class="cnt">${cnt}</span>
+        </button>`;
+      });
+    });
+  }
+  el.innerHTML = html;
+}
+
+function renderCards(){
+  const grid = document.getElementById("cardGrid");
+  const search = state.search.toLowerCase();
+
+  let filtered = SERVICES.filter(s=>{
+    if(state.cat==="all"){
+      if(state.sub==="new") return s.isNew;
+      if(state.sub) return false;
+      return true;
+    }
+    if(s.cat!==state.cat) return false;
+    if(state.sub && s.sub!==state.sub) return false;
+    return true;
+  });
+
+  if(search){
+    filtered = filtered.filter(s=>
+      s.name.toLowerCase().includes(search)||
+      s.desc.toLowerCase().includes(search)||
+      s.tag.toLowerCase().includes(search)
+    );
+  }
+
+  document.getElementById("cardCount").textContent = filtered.length;
+
+  if(!filtered.length){
+    grid.innerHTML = `<div class="empty">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-text">검색 결과가 없습니다.</div>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(s=>`
+    <a class="card ${s.theme}" href="${s.url}" target="_blank" rel="noopener noreferrer">
+      <div class="card-top-line"></div>
+      ${s.isNew ? '<span class="card-new">NEW</span>' : ""}
+      <div class="card-icon">${s.icon}</div>
+      <div class="card-name">${s.name}</div>
+      <div class="card-desc">${s.desc}</div>
+      <div class="card-foot">
+        <span class="card-tag">${s.tag}</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  `).join("");
+}
+
+function updateMeta(){
+  const key = state.sub && state.sub!=="new" ? state.sub : state.cat;
+  const meta = PAGE_META[key] || PAGE_META["all"];
+  document.getElementById("pageTitle").textContent = meta.title;
+  document.getElementById("pageSub").textContent = meta.desc;
+}
+
+function handleNav(cat){
+  state.cat = cat;
+  state.sub = null;
+  document.querySelectorAll(".tnav").forEach(b=>{
+    b.classList.toggle("active", b.dataset.cat===cat);
+  });
+  updateMeta();
+  renderSidebar();
+  renderCards();
+}
+
+function handleSide(cat, sub, label){
+  state.cat = cat;
+  state.sub = sub || null;
+  updateMeta();
+  renderSidebar();
+  renderCards();
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+
+document.querySelectorAll(".tnav").forEach(b=>{
+  b.addEventListener("click",()=>handleNav(b.dataset.cat));
+});
+
+document.getElementById("searchInput").addEventListener("input",e=>{
+  state.search = e.target.value;
+  renderCards();
+});
+
+document.getElementById("menuBtn").addEventListener("click",()=>{
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+});
+document.getElementById("overlay").addEventListener("click",()=>{
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+});
+
+renderSidebar();
+renderCards();
+</script>
+</body>
+</html>
