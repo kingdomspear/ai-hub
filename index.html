@@ -353,6 +353,7 @@ main{
     <button class="tnav" data-cat="assistant">AI 어시스턴트</button>
     <button class="tnav" data-cat="creative">크리에이티브 AI</button>
     <button class="tnav" data-cat="dev">개발 &amp; 플랫폼</button>
+    <button class="tnav" data-cat="productivity">생산성 AI</button>
   </nav>
   <div class="search-box">
     <span class="search-icon">🔍</span>
@@ -419,6 +420,27 @@ const SERVICES = [
   {name:"Replit",icon:"🔴",desc:"브라우저 기반 클라우드 IDE. AI 에이전트로 앱을 빌드·테스트·배포까지 원스톱.",url:"https://replit.com",cat:"dev",sub:"devtools",theme:"t-orange",tag:"개발 도구",isNew:false},
   {name:"OpenAI API",icon:"🔑",desc:"GPT-4o·DALL-E·Whisper API. 강력한 AI 기능을 앱에 손쉽게 통합.",url:"https://platform.openai.com",cat:"dev",sub:"devtools",theme:"t-green",tag:"API 플랫폼",isNew:false},
   {name:"Anthropic API",icon:"🅐",desc:"Claude API. 안전하고 강력한 AI를 앱에 통합하기 위한 개발자 플랫폼.",url:"https://console.anthropic.com",cat:"dev",sub:"devtools",theme:"t-purple",tag:"API 플랫폼",isNew:false},
+  {name:"Supabase",icon:"🗄️",desc:"오픈소스 Firebase 대안. PostgreSQL 기반으로 벡터 검색·인증·스토리지·실시간 기능을 제공하는 AI 앱 백엔드.",url:"https://supabase.com",cat:"dev",sub:"devtools",theme:"t-green",tag:"백엔드 플랫폼",isNew:false},
+  {name:"Together AI",icon:"🤝",desc:"수천 개 오픈소스 모델을 API로 즉시 실행. Llama·Mistral 등을 저렴한 비용으로 스케일링 가능한 서버리스 플랫폼.",url:"https://www.together.ai",cat:"dev",sub:"devtools",theme:"t-orange",tag:"오픈모델 API",isNew:false},
+  {name:"Google AI Studio",icon:"🔬",desc:"Google의 AI 개발 플레이그라운드. Gemini API 키 발급부터 프롬프트 테스트·파인튜닝까지 무료로 제공.",url:"https://aistudio.google.com",cat:"dev",sub:"devtools",theme:"t-blue",tag:"API 플랫폼",isNew:false},
+  {name:"DeepSeek",icon:"🔍",desc:"중국 AI 스타트업의 혁신 모델. GPT-4급 성능을 오픈소스로 제공하며 코딩·수학 추론에 강력한 성능을 발휘.",url:"https://chat.deepseek.com",cat:"assistant",sub:"text",theme:"t-blue",tag:"텍스트 AI",isNew:true},
+  {name:"Meta AI",icon:"🤖",desc:"Meta의 AI 어시스턴트. Llama 4 기반으로 WhatsApp·Instagram에 통합되며 이미지 생성과 검색을 지원.",url:"https://www.meta.ai",cat:"assistant",sub:"text",theme:"t-blue",tag:"텍스트 AI",isNew:true},
+  {name:"Cohere",icon:"🔮",desc:"엔터프라이즈 특화 LLM 플랫폼. Command R+ 모델로 RAG·요약·분류에 최적화된 비즈니스용 AI 솔루션.",url:"https://cohere.com",cat:"assistant",sub:"text",theme:"t-cyan",tag:"텍스트 AI",isNew:false},
+  {name:"Qwen",icon:"🌏",desc:"알리바바의 멀티모달 AI. Qwen2.5 모델이 GPT-4o를 능가하는 성능을 보이며 코딩·수학·다국어를 지원.",url:"https://chat.qwen.ai",cat:"assistant",sub:"multimodal",theme:"t-orange",tag:"멀티모달",isNew:true},
+  {name:"DALL-E 3",icon:"🎭",desc:"OpenAI의 이미지 생성 모델. 정밀한 텍스트 지시를 따르며 ChatGPT와 통합되어 대화로 이미지를 생성.",url:"https://openai.com/dall-e-3",cat:"creative",sub:"image",theme:"t-green",tag:"이미지 생성",isNew:false},
+  {name:"Leonardo AI",icon:"🖌️",desc:"게임·크리에이티브 전문 이미지 생성 플랫폼. 캐릭터 일관성 유지와 커스텀 모델 학습을 지원.",url:"https://leonardo.ai",cat:"creative",sub:"image",theme:"t-yellow",tag:"이미지 생성",isNew:false},
+  {name:"Flux",icon:"💫",desc:"Black Forest Labs의 포토리얼 이미지 생성 모델. 세밀한 디테일과 자연스러운 조명으로 최고 품질의 사진을 생성.",url:"https://blackforestlabs.ai",cat:"creative",sub:"image",theme:"t-pink",tag:"이미지 생성",isNew:true},
+  {name:"Canva AI",icon:"✏️",desc:"세계 최대 디자인 플랫폼의 AI 기능. Magic Design·텍스트-이미지·배경 제거로 누구나 전문 디자인을 제작.",url:"https://www.canva.com",cat:"creative",sub:"image",theme:"t-purple",tag:"디자인 AI",isNew:false},
+  {name:"Sora",icon:"📹",desc:"OpenAI의 텍스트-비디오 생성 AI. 사실적이고 상상력 넘치는 영상을 텍스트 한 줄로 생성하는 혁신적 모델.",url:"https://sora.com",cat:"creative",sub:"video",theme:"t-blue",tag:"비디오 AI",isNew:true},
+  {name:"Luma Dream Machine",icon:"🌙",desc:"Luma AI의 고품질 비디오 생성. Ray2 모델로 물리적으로 정확하고 영화적 품질의 영상을 빠르게 생성.",url:"https://lumalabs.ai/dream-machine",cat:"creative",sub:"video",theme:"t-orange",tag:"비디오 AI",isNew:true},
+  {name:"Google Veo",icon:"📽️",desc:"Google DeepMind의 고해상도 비디오 생성 AI. 영화적 스타일과 사실적 물리 표현으로 최상의 영상 품질을 제공.",url:"https://labs.google/fx/tools/video-fx",cat:"creative",sub:"video",theme:"t-yellow",tag:"비디오 AI",isNew:true},
+  {name:"Notion AI",icon:"📝",desc:"Notion에 내장된 AI 작성 보조 도구. 문서 요약·번역·초안 작성·아이디어 구성을 워크스페이스 안에서 바로 실행.",url:"https://notion.so",cat:"productivity",sub:"writing",theme:"t-purple",tag:"문서 AI",isNew:false},
+  {name:"Gamma",icon:"🎯",desc:"AI 기반 프레젠테이션 자동 생성 도구. 텍스트 입력만으로 몇 초 안에 전문적인 슬라이드와 웹페이지를 제작.",url:"https://gamma.app",cat:"productivity",sub:"presentation",theme:"t-pink",tag:"프레젠테이션",isNew:false},
+  {name:"NotebookLM",icon:"📚",desc:"Google의 AI 연구 노트북. 문서·PDF·유튜브를 업로드하면 AI가 요약·질의응답·팟캐스트를 자동 생성.",url:"https://notebooklm.google.com",cat:"productivity",sub:"research",theme:"t-blue",tag:"리서치 AI",isNew:false},
+  {name:"DeepL",icon:"🌍",desc:"세계 최고 수준의 AI 번역 서비스. 자연스러운 문체와 높은 정확도로 31개 언어를 지원하며 문서 번역도 가능.",url:"https://www.deepl.com",cat:"productivity",sub:"translation",theme:"t-cyan",tag:"번역 AI",isNew:false},
+  {name:"Papago",icon:"🇰🇷",desc:"Naver의 한국어 특화 AI 번역 서비스. 한-영 번역 품질이 탁월하며 음성·이미지·웹페이지 번역을 모두 지원.",url:"https://papago.naver.com",cat:"productivity",sub:"translation",theme:"t-green",tag:"번역 AI",isNew:false},
+  {name:"Jasper",icon:"✍️",desc:"마케팅·콘텐츠 팀을 위한 AI 글쓰기 플랫폼. 브랜드 보이스 학습과 SEO 최적화 콘텐츠 대량 생성을 지원.",url:"https://www.jasper.ai",cat:"productivity",sub:"writing",theme:"t-orange",tag:"문서 AI",isNew:false},
+  {name:"Otter.ai",icon:"🦦",desc:"AI 회의 기록 및 요약 서비스. 실시간 자막 생성부터 회의 내용 요약·액션 아이템 추출까지 자동화.",url:"https://otter.ai",cat:"productivity",sub:"research",theme:"t-yellow",tag:"회의 AI",isNew:false},
 ];
 
 const SIDEBAR_CONFIG = {
@@ -429,6 +451,7 @@ const SIDEBAR_CONFIG = {
       {key:"assistant",label:"AI 어시스턴트",dot:"#a89bff",sub:null},
       {key:"creative",label:"크리에이티브 AI",dot:"#ff5fa0",sub:null},
       {key:"dev",label:"개발 & 플랫폼",dot:"#41e08e",sub:null},
+      {key:"productivity",label:"생산성 AI",dot:"#f5c542",sub:null},
     ],
     extra:[
       {label:"인기 서비스",items:[
@@ -463,6 +486,16 @@ const SIDEBAR_CONFIG = {
         {key:"devtools",label:"개발 도구",dot:"#41e08e",sub:"devtools"},
       ]}
     ]
+  },
+  productivity:{
+    sections:[
+      {label:"카테고리",items:[
+        {key:"writing",label:"문서 & 글쓰기",dot:"#a89bff",sub:"writing"},
+        {key:"presentation",label:"프레젠테이션",dot:"#ff8ac0",sub:"presentation"},
+        {key:"research",label:"리서치 도구",dot:"#7ecbff",sub:"research"},
+        {key:"translation",label:"번역 AI",dot:"#41e08e",sub:"translation"},
+      ]}
+    ]
   }
 };
 
@@ -481,6 +514,11 @@ const PAGE_META = {
   hub:{title:"모델 허브",desc:"AI 모델을 탐색·배포·실행하는 플랫폼"},
   editor:{title:"AI 코드 에디터",desc:"AI가 내장된 차세대 개발 환경"},
   devtools:{title:"개발 도구",desc:"AI 앱 개발을 위한 API·IDE·플랫폼"},
+  productivity:{title:"생산성 AI",desc:"문서 작성·번역·리서치·프레젠테이션 AI 도구 모음"},
+  writing:{title:"문서 & 글쓰기 AI",desc:"AI로 문서를 작성하고 아이디어를 정리하세요"},
+  presentation:{title:"프레젠테이션 AI",desc:"AI로 슬라이드와 발표 자료를 자동 생성"},
+  research:{title:"리서치 도구",desc:"AI 기반 연구·분석·정보 탐색 도구"},
+  translation:{title:"번역 AI",desc:"AI 기반 고품질 번역 서비스"},
 };
 
 let state = {cat:"all",sub:null,search:""};
